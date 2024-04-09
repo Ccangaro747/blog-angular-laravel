@@ -1,34 +1,93 @@
 <nav class="bg-gray-800 p-4">
+  <!-- Contenedor principal de la barra de navegación con fondo gris y espacio interno de 4 unidades -->
   <div class="container mx-auto flex justify-between items-center">
-      <!-- Logo -->
-      <div class="flex items-center">
-        <img src="../assets/favicon.ico" alt="Logo" class="h-8 w-8 mr-2">
-        <a href="#" class="text-white text-2xl font-bold">NG-Blog</a>
+    <!-- Contenedor flex con alineación entre elementos -->
+    <!-- Logo -->
+    <div class="flex items-center">
+      <!-- Contenedor flex para el logo -->
+      <img src="../assets/favicon.ico" alt="Logo" class="h-8 w-8 mr-2" />
+      <!-- Imagen del logo -->
+      <a href="#" class="text-white text-2xl font-bold">NG-Blog</a>
+      <!-- Texto del nombre del blog -->
     </div>
-      <!-- Enlaces de navegación -->
-      <div class="hidden md:flex space-x-4">
-          <a href="#" class="text-white">Inicio</a>
-          <a href="#" class="text-white">Acerca</a>
-          <a href="#" class="text-white">Servicios</a>
-          <a href="#" class="text-white">Contacto</a>
-      </div>
-      <!-- Menú de hamburguesa para dispositivos móviles -->
-      <div class="md:hidden">
-          <button class="text-white focus:outline-none" (click)="toggleMenu()">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                  <path *ngIf="!isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-                  <path *ngIf="isMenuOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-          </button>
-      </div>
+    <!-- Enlaces de navegación -->
+    <div class="hidden md:flex space-x-4">
+      <!-- Contenedor flex para los enlaces de navegación oculto en dispositivos móviles -->
+      <a href="#" class="text-white">Inicio</a>
+      <!-- Enlace de Inicio -->
+      <a href="#" class="text-white">Acerca</a>
+      <!-- Enlace de Acerca -->
+      <a href="#" class="text-white">Servicios</a>
+      <!-- Enlace de Categoria -->
+      <a href="#" class="text-white">Categorías</a>
+      <!-- Enlace de Servicios -->
+      <a href="#" class="text-white" (click)="toggleUserMenu()"
+        >Nombre de usuario</a
+      >
+      <!-- Enlace para mostrar el menú de usuario -->
+    </div>
+    <!-- Menú de hamburguesa para dispositivos móviles -->
+    <div class="md:hidden">
+      <!-- Botón de menú desplegable para dispositivos móviles -->
+      <button class="text-white focus:outline-none" (click)="toggleMenu()">
+        <!-- Botón con ícono de hamburguesa -->
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            *ngIf="!isMenuOpen"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16m-7 6h7"
+          ></path>
+          <!-- Ícono de hamburguesa cerrada -->
+          <path
+            *ngIf="isMenuOpen"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          ></path>
+          <!-- Ícono de hamburguesa abierta -->
+        </svg>
+      </button>
+    </div>
   </div>
   <!-- Menú desplegable en dispositivos móviles -->
   <div class="md:hidden" *ngIf="isMenuOpen">
-      <div class="flex flex-col space-y-2">
-          <a href="#" class="text-white">Inicio</a>
-          <a href="#" class="text-white">Acerca</a>
-          <a href="#" class="text-white">Servicios</a>
-          <a href="#" class="text-white">Contacto</a>
-      </div>
+    <!-- Contenedor del menú desplegable en dispositivos móviles -->
+    <div class="flex flex-col space-y-2">
+      <!-- Contenedor de enlaces en columna para dispositivos móviles -->
+      <a href="#" class="text-white">Inicio</a>
+      <!-- Enlace de Inicio -->
+      <a href="#" class="text-white">Acerca</a>
+      <!-- Enlace de Acerca -->
+      <a href="#" class="text-white">Servicios</a>
+      <!-- Enlace de Categoria -->
+      <a href="#" class="text-white">Categoría</a>
+      <!-- Enlace de Servicios -->
+      <a href="#" class="text-white" (click)="toggleUserMenu()"
+        >Nombre de usuario</a
+      >
+      <!-- Enlace para mostrar el menú de usuario -->
+    </div>
+  </div>
+  <!-- Menú de usuario -->
+  <div
+    class="absolute right-0 mt-2 bg-gray-800 rounded-md shadow-lg"
+    *ngIf="isUserMenuOpen"
+  >
+    <!-- Contenedor del menú de usuario -->
+    <a href="#" class="block px-4 py-2 text-white">Perfil</a>
+    <!-- Enlace al perfil del usuario -->
+    <a href="#" class="block px-4 py-2 text-white">Configuración</a>
+    <!-- Enlace a la configuración del usuario -->
+    <a href="#" class="block px-4 py-2 text-white">Salir</a>
+    <!-- Enlace para salir de la sesión del usuario -->
   </div>
 </nav>
