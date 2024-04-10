@@ -1,31 +1,22 @@
 <nav class="bg-gray-800 p-4">
-  <!-- Contenedor principal de la barra de navegación con fondo gris y espacio interno de 4 unidades -->
   <div class="container mx-auto flex justify-between items-center">
-    <!-- Contenedor flex con alineación entre elementos -->
     <!-- Logo -->
     <div class="flex items-center">
-      <!-- Contenedor flex para el logo -->
       <img src="../assets/favicon.ico" alt="Logo" class="h-8 w-8 mr-2" />
-      <!-- Imagen del logo -->
       <a href="#" class="text-white text-2xl font-bold">NG-Blog</a>
-      <!-- Texto del nombre del blog -->
     </div>
     <!-- Enlaces de navegación -->
     <div class="hidden md:flex space-x-4">
       <!-- Contenedor flex para los enlaces de navegación oculto en dispositivos móviles -->
-      <a href="#" class="text-white">Inicio</a>
-      <!-- Enlace de Inicio -->
-      <a href="#" class="text-white">Acerca</a>
-      <!-- Enlace de Acerca -->
-      <a href="#" class="text-white">Servicios</a>
-      <!-- Enlace de Categoria -->
-      <a href="#" class="text-white">Categorías</a>
-      <!-- Enlace de Servicios -->
+      <a [routerLink]="['/inicio']" class="text-white">Inicio</a>
+      <a href="#" class="text-white">Categorias</a>
+      <a [routerLink]="['/inicio']" class="text-white">Login</a>
+      <a [routerLink]="['/registro']" class="text-white">Registro</a>
       <a href="#" class="text-white" (click)="toggleUserMenu()"
         >Nombre de usuario</a
       >
-      <!-- Enlace para mostrar el menú de usuario -->
     </div>
+
     <!-- Menú de hamburguesa para dispositivos móviles -->
     <div class="md:hidden">
       <!-- Botón de menú desplegable para dispositivos móviles -->
@@ -58,6 +49,7 @@
       </button>
     </div>
   </div>
+
   <!-- Menú desplegable en dispositivos móviles -->
   <div class="md:hidden" *ngIf="isMenuOpen">
     <!-- Contenedor del menú desplegable en dispositivos móviles -->
@@ -91,3 +83,4 @@
     <!-- Enlace para salir de la sesión del usuario -->
   </div>
 </nav>
+<router-outlet></router-outlet>
