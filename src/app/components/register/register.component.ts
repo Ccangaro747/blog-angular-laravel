@@ -12,6 +12,7 @@ import { UserService } from '../../services/user.service';
 export class RegisterComponent {
   public name: string;
   public user: User;
+  public status: string; // Inicializar status aquí
 
   constructor(
 
@@ -19,6 +20,8 @@ export class RegisterComponent {
   ) {
     this.name = 'John Doe';
     this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '');
+    this.status = ''; // Inicializar status aquí
+    
   }
 
   onSubmit(form: NgForm) {
@@ -27,10 +30,20 @@ export class RegisterComponent {
 
     this._userService.register(this.user).subscribe(
       response => {
-        console.log(response);
+
+        if (response.status == 'success') {
+          this.status = response.status;
+          form.reset();
+        } else {
+          this.status = 'error';
+        }
+
+
+
         form.reset();
       },
       error => {
+        this.status = 'error';
         console.log(<any>error);
       }
     );

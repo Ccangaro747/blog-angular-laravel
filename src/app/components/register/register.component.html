@@ -3,6 +3,14 @@
     <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="max-w-md w-full">
       <h1 class="text-gray-800 text-3xl font-bold mb-4">Registro</h1>
       <p class="text-gray-800 text-center mb-4">Regístrate en nuestra plataforma para crear nuevas entradas y mucho más</p>
+
+      <div *ngIf="status == 'success'">
+        El registro se ha completado correctamente <a [routerLink]="['/login']" class="text-blue-500">Inicia sesión</a>
+      </div>
+      <div *ngIf="status == 'error'">
+        El registro no se ha completado correctamente
+      </div>
+
       <div class="mb-4">
         <label for="name" class="block text-gray-800">Nombre:</label>
         <input type="text" id="name" name="name" #name="ngModel" [(ngModel)]="user.name" required pattern="[a-zA-Z]+" class="form-input mt-1 block w-full rounded-md bg-gray-100"/>
