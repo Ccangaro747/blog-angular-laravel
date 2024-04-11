@@ -4,10 +4,11 @@
       <h1 class="text-gray-800 text-3xl font-bold mb-4">Registro</h1>
       <p class="text-gray-800 text-center mb-4">Regístrate en nuestra plataforma para crear nuevas entradas y mucho más</p>
 
-      <div *ngIf="status == 'success'">
-        El registro se ha completado correctamente <a [routerLink]="['/login']" class="text-blue-500">Inicia sesión</a>
+      <div class="p-4 bg-green-500 text-white rounded-md" *ngIf="status == 'success'">
+        El registro se ha completado correctamente
+        <a class="text-blue-500 underline" [routerLink]="['/login']" >Inicia sesión</a>
       </div>
-      <div *ngIf="status == 'error'">
+      <div class="p-4 bg-red-500 text-white rounded-md" *ngIf="status == 'error'" >
         El registro no se ha completado correctamente
       </div>
 
