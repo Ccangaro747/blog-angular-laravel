@@ -7,11 +7,15 @@ import {global} from './global';
 @Injectable()
 export class UserService{
   public url: string;
+  public identity: any;
+  public token: string | null;
 
   constructor(
     private _http: HttpClient
   ){
     this.url = global.url;
+    this.identity = null;
+    this.token = null;
   }
 
   test(){
@@ -42,6 +46,32 @@ export class UserService{
     return this._http.post(this.url+'login', params, {headers: headers});
   }
 
+  getIdentity(){
+    let identity = localStorage.getItem('identity');
+
+    if(identity && identity != "undefined"){
+      this.identity = JSON.parse(identity);
+    }else{
+      this.identity = null;
+    }
+
+    return this.identity;
+  }
+
+getToken(){
+  let token = localStorage.getItem('token');
+  if(token && token != "undefined"){
+    this.token = token;
+}else{
+  this.token = null;
+}
+  return this.token;
+  }
 
 
 }
+
+
+
+
+

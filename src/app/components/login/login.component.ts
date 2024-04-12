@@ -41,8 +41,14 @@ export class LoginComponent {
           this._userService.singup(this.user, true).subscribe(
             response => {
               this.identity = response;
+
+              //Persistir datos usuario identificado en el localStorage del navegador
+
               console.log(this.token);
               console.log(this.identity);
+
+              localStorage.setItem('token', this.token);
+              localStorage.setItem('identity', JSON.stringify(this.identity));
             },
             error => {
               this.status = 'error';

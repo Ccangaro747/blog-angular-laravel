@@ -10,10 +10,10 @@
       <!-- Contenedor flex para los enlaces de navegación oculto en dispositivos móviles -->
       <a [routerLink]="['/inicio']" class="text-white">Inicio</a>
       <a href="#" class="text-white">Categorias</a>
-      <a [routerLink]="['/inicio']" class="text-white">Login</a>
+      <a [routerLink]="['/login']" class="text-white">Login</a>
       <a [routerLink]="['/registro']" class="text-white">Registro</a>
       <a href="#" class="text-white" (click)="toggleUserMenu()"
-        >Nombre de usuario</a
+        >{{identity.name + '' + identity.surname}}</a
       >
     </div>
 
