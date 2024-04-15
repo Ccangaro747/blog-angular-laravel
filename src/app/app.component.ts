@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { UserService } from './services/user.service';
   styleUrls: ['./app.component.css'], // Ubicación del archivo CSS que contiene los estilos del componente
   providers: [UserService] // Servicios que necesita este componente
 })
-export class AppComponent {
+export class AppComponent implements OnInit, DoCheck{
   isMenuOpen = false; // Propiedad que controla si el menú está abierto o cerrado, inicializada en false
   isUserMenuOpen = false; // Propiedad que controla si el menú de usuario está abierto o cerrado, inicializada en false
 
@@ -20,10 +20,21 @@ export class AppComponent {
   }
 
   public identity; // Propiedad que almacena la identidad del usuario
-  //public token; // Propiedad que almacena el token del usuario
+  public token; // Propiedad que almacena el token del usuario
 
   constructor(public _userService: UserService) { // Constructor del componente
     this.identity = this._userService.getIdentity(); // Obtiene la identidad del usuario
-    //this.token = this._userService.getToken(); // Obtiene el token del usuario
+    this.token = this._userService.getToken(); // Obtiene el token del usuario
+  }
+  ngOnInit(){
+    console.log('AppComponent cargado');
+  }
+
+  ngDoCheck(){
+    this.loadUser();
+  }
+  loadUser() {
+    this.identity = this._userService.getIdentity(); // Obtiene la identidad del usuario
+    this.token = this._userService.getToken(); // Obtiene el token del usuariodentidad del usuario
   }
 }

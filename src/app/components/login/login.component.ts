@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { User } from '../../models/user';
 import { UserService } from '../../services/user.service';
 import { NgForm } from '@angular/forms';
@@ -12,23 +13,26 @@ import { NgForm } from '@angular/forms';
 export class LoginComponent {
   public user: User;
   public status: string;
-  public token: string;
-  public identity: string;
-
+  public token: string | null;
+  public identity: string | null;
+  public isUserMenuOpen: boolean;
 
   constructor(
-    private _userService: UserService
-
-
+    private _userService: UserService,
+    private _router: Router,
+    private _route: ActivatedRoute,
 
   ) {
     this.user = new User(1, '', '', 'ROLE_USER', '', '', '', '');
     this.status = '';
-    this.token = '';
-    this.identity = '';
+    this.token = null;
+    this.identity = null;
+    this.isUserMenuOpen = false;
   }
 
-
+  ngOnInit() {
+    this.logout();
+  }
     onSubmit(form: NgForm) {
       this._userService.singup(this.user).subscribe(
         response => {
@@ -47,8 +51,15 @@ export class LoginComponent {
               console.log(this.token);
               console.log(this.identity);
 
-              localStorage.setItem('token', this.token);
-              localStorage.setItem('identity', JSON.stringify(this.identity));
+              if (this.token != null) {
+                localStorage.setItem('token', this.token);
+              }
+
+              if (this.identity != null) {
+                localStorage.setItem('identity', JSON.stringify(this.identity));
+              }
+                      //Redirección a la página de inicio
+                      this._router.navigate(['inicio']);
             },
             error => {
               this.status = 'error';
@@ -63,8 +74,28 @@ export class LoginComponent {
           this.status = 'error';
           console.log(<any>error);
         }
-      )
+      );
 
   }
+  logout() {
+    this._route.params.subscribe(params => {
+      let logout = +params['sure'];
+
+      if (logout == 1) {
+        localStorage.removeItem('identity');
+        localStorage.removeItem('token');
+
+        this.identity = null;
+        this.token = null;
+
+        // Ocultar el menú de usuario
+        this.isUserMenuOpen = false;
+
+        //Redirección a la página de inicio
+        this._router.navigate(['inicio']);
+      }
+    });
+  }
+
 
 }
