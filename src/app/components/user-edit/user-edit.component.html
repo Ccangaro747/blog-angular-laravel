@@ -1,0 +1,100 @@
+<div class="p-4 bg-white">
+  <h1></h1>
+  <div class="container flex items-center justify-center mx-auto">
+    <form
+      #userEditForm="ngForm"
+      (ngSubmit)="onSubmit(userEditForm)"
+      class="w-full max-w-md"
+    >
+      <h1 class="mb-4 text-3xl font-bold text-gray-800">{{ title }}</h1>
+      <p class="mb-4 text-center text-gray-800">
+        Modifica tus datos personales de usuario
+      </p>
+      <!--
+        <div class="p-4 text-white bg-green-500 rounded-md" *ngIf="status === 'success'">
+        El registro se ha completado correctamente
+        <a class="text-blue-500 underline" [routerLink]="['/login']">Inicia sesión</a>
+      </div>
+      <div class="p-4 text-white bg-red-500 rounded-md" *ngIf="status === 'error'">
+        El registro no se ha completado correctamente
+      </div>
+-->
+      <div class="mb-4">
+        <label for="name" class="block text-gray-800">Nombre:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          #name="ngModel"
+          [(ngModel)]="user.name"
+          required
+          pattern="[a-zA-Z]+"
+          class="block w-full mt-1 bg-gray-100 rounded-md form-input"
+        />
+        <small *ngIf="!name.valid && name.touched" class="text-red-500">
+          El nombre no es válido
+        </small>
+      </div>
+      <div class="mb-4">
+        <label for="surname" class="block text-gray-800">Apellido:</label>
+        <input
+          type="text"
+          id="surname"
+          name="surname"
+          #surname="ngModel"
+          [(ngModel)]="user.surname"
+          required
+          pattern="[a-zA-Z]+"
+          class="block w-full mt-1 bg-gray-100 rounded-md form-input"
+        />
+        <small *ngIf="!surname.valid && surname.touched" class="text-red-500">
+          El apellido no es válido
+        </small>
+      </div>
+      <div class="mb-4">
+        <label for="email" class="block text-gray-800">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          #email="ngModel"
+          [(ngModel)]="user.email"
+          required
+          class="block w-full mt-1 bg-gray-100 rounded-md form-input"
+        />
+        <small *ngIf="!email.valid && email.touched" class="text-red-500">
+          El email no es válido
+        </small>
+      </div>
+      <div class="mb-4">
+        <label for="description" class="block text-gray-800">Biografia:</label>
+        <input
+          type="text"
+          id="description"
+          name="description"
+          #description="ngModel"
+          [(ngModel)]="user.description"
+          class="block w-full mt-1 bg-gray-100 rounded-md form-input"
+        />
+      </div>
+
+      <div class="mb-4">
+        <label for="image" class="block text-gray-800">Avatar:</label>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          class="block w-full mt-1 bg-gray-100 rounded-md form-input"
+        />
+      </div>
+
+
+      <div class="flex justify-center">
+        <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700" [disabled]="userEditForm.invalid">
+          Guardar cambios
+        </button>
+      </div>
+
+    </form>
+  </div>
+</div>

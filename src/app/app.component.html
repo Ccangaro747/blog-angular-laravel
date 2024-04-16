@@ -72,9 +72,11 @@
       </ng-container>
       <ng-container *ngIf="identity">
         <!-- Mostrar solo si el usuario está logeado -->
+        <div class="flex flex-col space-y-2">
         <a [routerLink]="['/inicio']" class="text-white">Inicio</a>
         <a href="#" class="text-white">Categorías</a>
-        <a href="#" class="text-white" (click)="toggleUserMenu()">Nombre de usuario</a>
+        <a href="#" class="text-white" (click)="toggleUserMenu()">{{identity.name + ' ' + identity.surname}}</a>
+        </div>
         <!-- Enlace para mostrar el menú de usuario -->
       </ng-container>
     </div>
@@ -85,12 +87,11 @@
     *ngIf="isUserMenuOpen"
   >
     <!-- Contenedor del menú de usuario -->
-    <a href="#" class="block px-4 py-2 text-white">Perfil</a>
-    <!-- Enlace al perfil del usuario -->
-    <a href="#" class="block px-4 py-2 text-white">Configuración</a>
-    <!-- Enlace a la configuración del usuario -->
+    <a href="#" class="block px-4 py-2 text-white">Crear entrada</a>
+    <a href="#" class="block px-4 py-2 text-white">Crear categoría</a>
+    <a href="#" class="block px-4 py-2 text-white">Mi perfil</a>
+    <a [routerLink]="['/ajustes']" class="block px-4 py-2 text-white" (click)="toggleUserMenu()">Ajustes</a>
     <a [routerLink]="['/logout/1']" class="block px-4 py-2 text-white" (click)="toggleUserMenu()">Salir</a>
-    <!-- Enlace para salir de la sesión del usuario -->
   </div>
 </nav>
 <router-outlet></router-outlet>

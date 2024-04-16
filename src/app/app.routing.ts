@@ -7,6 +7,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { RegisterComponent } from "./components/register/register.component";
 import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
 
 //Define the routes
 const appRoutes: Routes = [
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   { path: "login", component: LoginComponent },
   { path: "logout/:sure", component: LoginComponent},
   { path: "registro", component: RegisterComponent },
+  { path: "ajustes", component: UserEditComponent },
   { path: "**", component: ErrorComponent } //Esta tiene que estar al final de todas las rutas
 ];
 
