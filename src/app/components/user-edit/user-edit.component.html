@@ -10,15 +10,14 @@
       <p class="mb-4 text-center text-gray-800">
         Modifica tus datos personales de usuario
       </p>
-      <!--
+      <!--Alertas-->
         <div class="p-4 text-white bg-green-500 rounded-md" *ngIf="status === 'success'">
-        El registro se ha completado correctamente
-        <a class="text-blue-500 underline" [routerLink]="['/login']">Inicia sesión</a>
+        Los datos se han guardado correctamente
       </div>
       <div class="p-4 text-white bg-red-500 rounded-md" *ngIf="status === 'error'">
-        El registro no se ha completado correctamente
+        Los datos no se han guardado
       </div>
--->
+
       <div class="mb-4">
         <label for="name" class="block text-gray-800">Nombre:</label>
         <input
