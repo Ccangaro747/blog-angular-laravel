@@ -67,15 +67,15 @@
         </small>
       </div>
       <div class="mb-4">
-        <label for="description" class="block text-gray-800">Biografia:</label>
-        <input
-          type="text"
+        <label for="description" class="block text-gray-800">Biografía:</label>
+        <textarea
           id="description"
           name="description"
           #description="ngModel"
           [(ngModel)]="user.description"
-          class="block w-full mt-1 bg-gray-100 rounded-md form-input"
-        />
+          class="block w-full mt-1 bg-gray-100 rounded-md resize-none form-textarea"
+          rows="5"
+        ></textarea>
       </div>
 
       <div class="mb-4">

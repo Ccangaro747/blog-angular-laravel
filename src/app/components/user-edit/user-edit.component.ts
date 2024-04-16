@@ -15,7 +15,7 @@ export class UserEditComponent {
   public status;
   public identity;
   public token;
-
+  public options: Object = {}
   constructor(
     private _userService: UserService
 
@@ -42,7 +42,7 @@ export class UserEditComponent {
     if (this.token != null) {
       this._userService.update(this.token, this.user).subscribe(
         response => {
-          if(response){
+          if(response && response.status == 'success'){
             console.log(response);
             this.status = 'success';
 
