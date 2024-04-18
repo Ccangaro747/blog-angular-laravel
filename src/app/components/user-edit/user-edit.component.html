@@ -77,23 +77,25 @@
         ></textarea>
       </div>
 
-      <div class="mb-4">
-        <label for="image" class="block text-gray-800">Avatar:</label>
-        <input
-          type="file"
-          id="image"
-          name="image"
-          class="block w-full mt-1 bg-gray-100 rounded-md form-input"
-        />
-      </div>
+<div class="form-group">
+  <label for="avatar">Avatar</label>
+  <div *ngIf="identity && identity.image">
+    <img src="{{url + 'avatar' + identity.image}}" class="avatar_edit" />]
+  </div>
+
+  <input type="file" id="avatar" name="file0" class="file-input" (change)="onFileSelected($event)" #fileUpload>
 
 
-      <div class="flex justify-center">
-        <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700" [disabled]="userEditForm.invalid">
-          Guardar cambios
-        </button>
-      </div>
+  <div class="file-upload">
+    {{fileName || "No se ha seleccionado un archivo"}}
+    <button (click)="fileUpload.click()">
+    </button>
 
+  </div>
+</div>
+
+
+<input type="submit" value="Guardar cambios" [disabled]="userEditForm.invalid">
     </form>
   </div>
 </div>

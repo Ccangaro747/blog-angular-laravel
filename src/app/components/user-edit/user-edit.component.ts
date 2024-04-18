@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { User } from '../../models/user';
 import { NgForm } from '@angular/forms';
 import { UserService } from '../../services/user.service';
+import { HttpHeaders } from '@angular/common/http';
+import { HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-user-edit',
@@ -15,10 +17,36 @@ export class UserEditComponent {
   public status;
   public identity;
   public token;
+  public url: string = 'http://127.0.0.1:8000/api/'; // Añade esta línea para definir url
+  public fileName: string = ''; // Añade esta línea para definir fileName
   public options: Object = {}
-  constructor(
-    private _userService: UserService
 
+  public onFileSelected(event:any){
+    let file: File = event.target.files[0];
+
+    const formData = new FormData();
+    formData.append("file0", file, file.name); // Aquí cambia "image" a "file0"
+
+    let token = this._userService.getToken();
+let headers = new HttpHeaders().set('Authorization', token ? token : '');
+
+    this._http.post(this.url + 'upload', formData, {headers: headers}).subscribe(
+      response =>{
+        let data = JSON.stringify(response);
+        let datos = JSON.parse(data);
+        this.user.image = datos.image;
+      },
+      error =>{
+        console.log(error);
+      }
+    );
+  }
+
+
+
+  constructor(
+    private _userService: UserService,
+    private _http: HttpClient
   ) {
     this.title = 'Ajustes de usuario';
     this.user = new User(1, '', '', '', '', '', '', '');
