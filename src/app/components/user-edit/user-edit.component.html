@@ -80,7 +80,7 @@
 <div class="form-group">
   <label for="avatar">Avatar</label>
   <div *ngIf="identity && identity.image">
-    <img src="{{url + 'avatar' + identity.image}}" class="avatar_edit" />]
+    <img src="{{url + 'avatar/' + identity.image}}" class="avatar_edit" />
   </div>
 
   <input type="file" id="avatar" name="file0" class="file-input" (change)="onFileSelected($event)" #fileUpload>

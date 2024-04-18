@@ -22,24 +22,28 @@ export class UserEditComponent {
   public options: Object = {}
 
   public onFileSelected(event:any){
-    let file: File = event.target.files[0];
+    if (event.target.files.length > 0) {
+      let file: File = event.target.files[0];
 
-    const formData = new FormData();
-    formData.append("file0", file, file.name); // Aquí cambia "image" a "file0"
+      const formData = new FormData();
+      formData.append("file0", file, file.name);
 
-    let token = this._userService.getToken();
-let headers = new HttpHeaders().set('Authorization', token ? token : '');
+      let token = this._userService.getToken();
+      let headers = new HttpHeaders().set('Authorization', token ? token : '');
 
-    this._http.post(this.url + 'upload', formData, {headers: headers}).subscribe(
-      response =>{
-        let data = JSON.stringify(response);
-        let datos = JSON.parse(data);
-        this.user.image = datos.image;
-      },
-      error =>{
-        console.log(error);
-      }
-    );
+      this._http.post(this.url + 'upload', formData, {headers: headers}).subscribe(
+        response =>{
+          let data = JSON.stringify(response);
+          let datos = JSON.parse(data);
+          this.user.image = datos.image;
+        },
+        error =>{
+          console.log(error);
+        }
+      );
+    } else {
+      console.log('No se seleccionó ningún archivo');
+    }
   }
 
 
