@@ -2,26 +2,23 @@
   <div class="container flex flex-col items-center justify-center mx-auto">
     <h1 class="mb-4 text-3xl font-bold text-gray-800">{{title}}</h1>
     <p class="mb-4 text-gray-800">
-      Crea una nueva categoría para el BLOG
+      Crea un nuevo post para el BLOG
     </p>
-    <!-- Alertas -->
+    <!-- Alertas
     <div class="p-4 mb-4 text-white bg-green-500 rounded-md" *ngIf="status === 'success'">
       La categoría se ha creado correctamente
     </div>
     <div class="p-4 mb-4 text-white bg-red-500 rounded-md" *ngIf="status === 'error'">
       La categoría no se ha podido crear
-    </div>
+    </div>-->
 
-    <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)" class="w-full max-w-md">
+    <form class="w-full max-w-md">
       <div class="mb-4">
         <label for="categoryName" class="block text-gray-800">Nombre:</label>
-        <input type="text" id="categoryName" name="name" #name="ngModel" [(ngModel)]="category.name" required class="block w-full mt-1 bg-gray-100 rounded-md form-input"/>
-        <small *ngIf="!name.valid && name.touched" class="text-red-500">
-          El nombre de la categoría es obligatorio
-        </small>
+        <input type="text" id="categoryName" name="name" class="block w-full mt-1 bg-gray-100 rounded-md form-input"/>
       </div>
       <div class="flex justify-center">
-        <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700" [disabled]="categoryForm.invalid">
+        <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700" >
           Guardar
         </button>
       </div>

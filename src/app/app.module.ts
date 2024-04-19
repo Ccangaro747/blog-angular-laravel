@@ -16,6 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
 import { CategoryNewComponent } from './components/category-new/category-new.component';
+import { PostNewComponent } from './components/post-new/post-new.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CategoryNewComponent } from './components/category-new/category-new.com
     HomeComponent,
     ErrorComponent,
     UserEditComponent,
-    CategoryNewComponent
+    CategoryNewComponent,
+    PostNewComponent
   ],
   imports: [
     BrowserModule,

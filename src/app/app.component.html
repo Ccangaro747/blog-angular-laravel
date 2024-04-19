@@ -89,7 +89,7 @@
     *ngIf="isUserMenuOpen"
   >
     <!-- Contenedor del menú de usuario -->
-    <a href="#" class="block px-4 py-2 text-white">Crear entrada</a>
+    <a href="#" class="block px-4 py-2 text-white" [routerLink]="['/crear-entrada']">Crear entrada</a>
     <a  class="block px-4 py-2 text-white" [routerLink]="['/crear-categoria']">Crear categoría</a>
     <a href="#" class="block px-4 py-2 text-white">Mi perfil</a>
     <a [routerLink]="['/ajustes']" class="block px-4 py-2 text-white" (click)="toggleUserMenu()">Ajustes</a>
