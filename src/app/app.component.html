@@ -2,7 +2,7 @@
   <div class="container flex items-center justify-between mx-auto">
     <!-- Logo -->
     <div class="flex items-center">
-      <img src="../assets/favicon.ico" alt="Logo" class="w-8 h-8 mr-2" />
+      <!--<img src="../assets/favicon.ico" alt="Logo" class="w-8 h-8 mr-2" />-->
       <a href="#" class="text-2xl font-bold text-white"><img src="../assets/favicon.ico" alt="Logo" class="w-8 h-8 mr-2" /></a>
     </div>
     <!-- Enlaces de navegación -->
@@ -18,7 +18,9 @@
       <ng-container *ngIf="identity">
         <!-- Mostrar solo si el usuario está logeado -->
         <a [routerLink]="['/inicio']" class="text-white">Inicio</a>
-        <a href="#" class="text-white">Categorías</a>
+        <div *ngFor="let category of categories">
+          <a href="#" class="text-white">{{category.name}}</a>
+        </div>
       </ng-container>
     </div>
     <div class="hidden space-x-4 md:flex" *ngIf="identity && identity.name">
@@ -88,7 +90,7 @@
   >
     <!-- Contenedor del menú de usuario -->
     <a href="#" class="block px-4 py-2 text-white">Crear entrada</a>
-    <a href="#" class="block px-4 py-2 text-white">Crear categoría</a>
+    <a  class="block px-4 py-2 text-white" [routerLink]="['/crear-categoria']">Crear categoría</a>
     <a href="#" class="block px-4 py-2 text-white">Mi perfil</a>
     <a [routerLink]="['/ajustes']" class="block px-4 py-2 text-white" (click)="toggleUserMenu()">Ajustes</a>
     <a [routerLink]="['/logout/1']" class="block px-4 py-2 text-white" (click)="toggleUserMenu()">Salir</a>

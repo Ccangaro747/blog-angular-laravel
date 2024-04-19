@@ -15,6 +15,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { ErrorComponent } from './components/error/error.component';
 import { UserEditComponent } from './components/user-edit/user-edit.component';
+import { CategoryNewComponent } from './components/category-new/category-new.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { UserEditComponent } from './components/user-edit/user-edit.component';
     RegisterComponent,
     HomeComponent,
     ErrorComponent,
-    UserEditComponent
+    UserEditComponent,
+    CategoryNewComponent
   ],
   imports: [
     BrowserModule,
