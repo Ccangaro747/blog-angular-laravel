@@ -14,6 +14,30 @@ export class PostNewComponent {
   public title: string;
   public identity;
   public token;
+  public post: Post | undefined;
+
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _userService: UserService,
+    private _categoryService: CategoryService
+  ) {
+    this.title = "Crear una entrada";
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
+  }
+
+  ngOnInit() {
+    this.post = new Post(1, this.identity.sub, 1, '', '', '', '');
+    //console.log(this.post);
+  }
+}
+
+// Metodo sin el ngOnInit
+/*export class PostNewComponent {
+  public title: string;
+  public identity;
+  public token;
   public post: Post;
 
   constructor(
@@ -31,5 +55,6 @@ export class PostNewComponent {
   ngOnInit() {
     console.log(this.post);
   }
-}
+}*/
+
 
