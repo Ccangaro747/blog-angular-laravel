@@ -23,7 +23,6 @@ export class UserEditComponent {
 
 
   //Función para manejar la selección de archivos y su carga, imagen
-
   public onFileSelected(event: any) { // Función para manejar la selección de archivos
     if (event.target.files.length > 0) { // Comprueba si se ha seleccionado al menos un archivo
         let file: File = event.target.files[0]; // Obtiene el primer archivo seleccionado
