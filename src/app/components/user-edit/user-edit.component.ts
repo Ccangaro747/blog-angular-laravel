@@ -21,30 +21,39 @@ export class UserEditComponent {
   public fileName: string = ''; // Añade esta línea para definir fileName
   public options: Object = {}
 
-  public onFileSelected(event:any){
-    if (event.target.files.length > 0) {
-      let file: File = event.target.files[0];
 
-      const formData = new FormData();
-      formData.append("file0", file, file.name);
+  //Función para manejar la selección de archivos y su carga, imagen
 
-      let token = this._userService.getToken();
-      let headers = new HttpHeaders().set('Authorization', token ? token : '');
+  public onFileSelected(event: any) { // Función para manejar la selección de archivos
+    if (event.target.files.length > 0) { // Comprueba si se ha seleccionado al menos un archivo
+        let file: File = event.target.files[0]; // Obtiene el primer archivo seleccionado
 
-      this._http.post(this.url + 'upload', formData, {headers: headers}).subscribe(
-        response =>{
-          let data = JSON.stringify(response);
-          let datos = JSON.parse(data);
-          this.user.image = datos.image;
-        },
-        error =>{
-          console.log(error);
-        }
-      );
+        // Crea un objeto FormData para enviar los datos del formulario
+        const formData = new FormData();
+        formData.append("file0", file, file.name); // Agrega el archivo al formulario
+
+        // Obtiene el token de autenticación del usuario
+        let token = this._userService.getToken();
+
+        // Configura los encabezados de la solicitud HTTP, incluyendo el token de autenticación si está disponible
+        let headers = new HttpHeaders().set('Authorization', token ? token : '');
+
+        // Realiza una solicitud HTTP POST para subir el archivo al servidor
+        this._http.post(this.url + 'upload', formData, {headers: headers}).subscribe(
+            response => { // Función para manejar la respuesta exitosa
+                let data = JSON.stringify(response); // Convierte la respuesta a JSON
+                let datos = JSON.parse(data); // Parsea los datos JSON
+                this.user.image = datos.image; // Asigna la imagen recibida a alguna propiedad de la clase
+            },
+            error => { // Función para manejar errores
+                console.log(error); // Imprime el error en la consola
+            }
+        );
     } else {
-      console.log('No se seleccionó ningún archivo');
+        console.log('No se seleccionó ningún archivo'); // Si no se seleccionó ningún archivo, imprime un mensaje en la consola
     }
-  }
+}
+
 
 
 
