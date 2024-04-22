@@ -6,12 +6,13 @@ import { Post } from '../../models/post';
 import { NgForm } from '@angular/forms';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import { PostService } from '../../services/post.service';
 
 @Component({
   selector: 'app-post-new',
   templateUrl: './post-new.component.html',
   styleUrl: './post-new.component.css',
-  providers: [UserService, CategoryService]
+  providers: [UserService, CategoryService, PostService]
 })
 
 export class PostNewComponent {
@@ -19,7 +20,7 @@ export class PostNewComponent {
   public identity;
 
   public token;
-  public url: string = 'http://127.0.0.1:8000/api/'; // Añade esta línea para definir url. Podria añadirla aca, o desde el archivo global creado, dentro de la carpeta services
+  public url: string = 'http://127.0.0.1:8000/api/'; // Añade esta línea para definir url.
   public fileName: string = ''; // Añade esta línea para definir fileName
   public options: Object = {}
   public post: Post;
@@ -31,7 +32,8 @@ export class PostNewComponent {
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
-    private _categoryService: CategoryService
+    private _categoryService: CategoryService,
+    private _postService: PostService
   ) {
     this.titleOne = "Crear una entrada";
     this.identity = this._userService.getIdentity();
@@ -76,7 +78,7 @@ export class PostNewComponent {
 
   onSubmit(form: NgForm) {
     console.log(this.post);
-
+    console.log(this._postService.pruebas());
   }
 
   getCategories(){
