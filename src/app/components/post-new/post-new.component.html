@@ -1,6 +1,6 @@
 <div class="p-4 bg-white">
   <div class="container flex flex-col items-center justify-center mx-auto">
-    <h1 class="mb-4 text-3xl font-bold text-gray-800">{{title}}</h1>
+    <h1 class="mb-4 text-3xl font-bold text-gray-800">{{titleOne}}</h1>
     <p class="mb-4 text-gray-800">
       Crea un nuevo post para el BLOG
     </p>
@@ -12,11 +12,34 @@
       La categoría no se ha podido crear
     </div>-->
 
-    <form class="w-full max-w-md">
+    <form class="w-full max-w-md" #postNew="ngForm" (ngSubmit)="onSubmit(postNew)">
       <div class="mb-4">
-        <label for="categoryName" class="block text-gray-800">Nombre:</label>
-        <input type="text" id="categoryName" name="name" class="block w-full mt-1 bg-gray-100 rounded-md form-input"/>
+        <label for="titleId" class="block text-gray-800">Titulo:</label>
+        <input type="text" id="titleId" name="title" #title="ngModel" [(ngModel)]="post.title" class="block w-full mt-1 bg-gray-100 rounded-md form-input" required/>
+        <small *ngIf="!title.valid && title.touched" class="text-red-500">
+          El titulo no es valido
+        </small>
       </div>
+
+      <div class="mb-4">
+        <label for="contentId" class="block text-gray-800">Contenido:</label>
+        <textarea id="contentId" name="content" #content="ngModel" [(ngModel)]="post.content" class="block w-full mt-1 bg-gray-100 rounded-md form-textarea" required></textarea>
+        <small *ngIf="!content.valid && content.touched" class="text-red-500">
+          El contenido no es valido
+        </small>
+      </div>
+
+      <div class="mb-4">
+        <label for="category" class="block text-gray-800">Categoría:</label>
+        <select id="category" name="category" #category="ngModel" [(ngModel)]="post.category_id" class="block w-full mt-1 bg-gray-100 rounded-md form-select" required>
+          <option value="0">Selecciona una categoría</option>
+          <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+        <small *ngIf="!category.valid && category.touched" class="text-red-500">
+          La categoría no es valida
+        </small>
+      </div>
+
       <div class="flex justify-center">
         <button type="submit" class="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700" >
           Guardar
