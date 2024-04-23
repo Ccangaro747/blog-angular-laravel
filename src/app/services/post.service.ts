@@ -42,5 +42,11 @@ export class PostService{
     return this._http.post(this.url+'post', params, {headers: headers});
   }
 
+  // Método para obtener las entradas de la base de datos. Devuelve un Observable. 
+  getPosts(): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this._http.get(this.url+'post', {headers: headers});
+  }
 
 }
