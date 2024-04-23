@@ -4,13 +4,13 @@
     <p class="mb-4 text-gray-800">
       Añade un nuevo articulo al Blog
     </p>
-    <!-- Alertas
+
     <div class="p-4 mb-4 text-white bg-green-500 rounded-md" *ngIf="status === 'success'">
-      La categoría se ha creado correctamente
+      Los datos se han guardado correctamente
     </div>
     <div class="p-4 mb-4 text-white bg-red-500 rounded-md" *ngIf="status === 'error'">
-      La categoría no se ha podido crear
-    </div>-->
+      Los datos no se han guardado correctamente
+    </div>
 
     <form class="w-full max-w-md" #postNew="ngForm" (ngSubmit)="onSubmit(postNew)">
       <div class="mb-4">

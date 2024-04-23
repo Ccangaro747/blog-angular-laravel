@@ -25,6 +25,7 @@ export class PostNewComponent {
   public options: Object = {}
   public post: Post;
   public categories: any[];
+  public status;
 
 
   constructor(
@@ -38,6 +39,7 @@ export class PostNewComponent {
     this.titleOne = "Crear una entrada";
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+    this.status = '';
 
     // Inicializa post en el constructor
     this.post = new Post(1, this.identity.sub, 1, '', '', '', '');
@@ -81,8 +83,22 @@ export class PostNewComponent {
   }
 
   onSubmit(form: NgForm) {
-    console.log(this.post);
-    console.log(this._postService.pruebas());
+    if (this.token !== null)
+    this._postService.create(this.token, this.post).subscribe(
+      (response: any) => {
+        if(response.status == 'success'){
+          this.post = response.post;
+          this.status = 'success';
+          this._router.navigate(['/inicio']);
+        }else{
+          this.status = 'error';
+        }
+      },
+      (error: any) => {
+        console.log(<any>error);
+        this.status = 'error';
+      }
+    );
   }
 
   getCategories(){
