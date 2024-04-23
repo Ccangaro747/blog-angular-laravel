@@ -7,6 +7,7 @@ import { NgForm } from '@angular/forms';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import { PostService } from '../../services/post.service';
+import { global } from '../../services/global';
 
 @Component({
   selector: 'app-post-new',
@@ -18,17 +19,16 @@ import { PostService } from '../../services/post.service';
 export class PostNewComponent {
   public titleOne: string;
   public identity;
-
+  public url: string = global.url;
   public token;
-  public url: string = 'http://127.0.0.1:8000/api/'; // Añade esta línea para definir url.
-  public fileName: string = ''; // Añade esta línea para definir fileName
+  public fileName: string = '';
   public options: Object = {}
   public post: Post;
   public categories: any[];
 
 
   constructor(
-    private _http: HttpClient, // Inyecta HttpClient en el constructor
+    private _http: HttpClient,
     private _route: ActivatedRoute,
     private _router: Router,
     private _userService: UserService,
@@ -38,9 +38,13 @@ export class PostNewComponent {
     this.titleOne = "Crear una entrada";
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
+
+    // Inicializa post en el constructor
     this.post = new Post(1, this.identity.sub, 1, '', '', '', '');
+
     this.categories = [];
   }
+
 
   public onImageSelected(event: any) { // Función para manejar la selección de archivos
     if (event.target.files.length > 0) { // Comprueba si se ha seleccionado al menos un archivo

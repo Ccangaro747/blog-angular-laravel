@@ -43,11 +43,11 @@
       <div class="form-group">
         <label for="image">Imagen</label>
 
-        <!-- Esta parte mostrará la imagen del avatar si ya está definida -->
-        <div *ngIf="identity && identity.image"><!-- Renderiza el contenido dentro de este div solo si hay una identidad definida y tiene una imagen asociada -->
+        <div *ngIf="identity && identity.image">
         </div>
 
-        <input type="file" id="image" name="file0" class="file-input" (change)="onImageSelected($event)" #fileUpload>
+        <input type="file" id="image" name="file0" class="file-input"
+        (change)="onImageSelected($event)" #fileUpload>
 
         <div class="file-upload">
           {{fileName || ""}}
