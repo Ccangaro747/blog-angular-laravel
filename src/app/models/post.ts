@@ -1,4 +1,4 @@
-export class Post{
+export class Post {
   constructor(
     public id: number,
     public user_id: number,
@@ -6,6 +6,8 @@ export class Post{
     public title: string,
     public content: string,
     public image: string,
-    public created_at: any
-  ){}
+    public created_at: any,
+    public category?: { name: string },  // Añade esta línea si `category` es una propiedad de `Post`
+    public user?: { name: string, surname: string }  // Añade esta línea
+  ) {}
 }

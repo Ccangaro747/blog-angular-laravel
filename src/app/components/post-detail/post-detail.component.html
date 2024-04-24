@@ -1,1 +1,14 @@
-<p>post-detail works!</p>
+<div class="container flex items-center justify-center mx-auto" *ngIf="!post">
+  <div class="mt-3 text-center">Cargando...</div>
+</div>
+
+<div class="container mx-auto mt-3" *ngIf="post">
+  <div class="max-w-3xl mx-auto">
+    <h1 class="text-3xl font-bold">{{post.title}}</h1>
+    <hr class="my-4">
+    <p class="mb-2">
+      {{post.category?.name}} - {{post.user?.name}} {{post.user?.surname}}
+    </p>
+    <p [innerHTML]="post.content"></p>
+  </div>
+</div>

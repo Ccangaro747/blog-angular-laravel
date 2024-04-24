@@ -17,7 +17,8 @@
           <div class="mb-2 text-xl font-bold">
             <a [routerLink]="['/entrada', post.id]">{{post.title}}</a>
           </div>
-          <p class="text-base text-gray-700">{{post.content}}</p>
+          <!--Agregue la tuberia slice de angular para que en el post.content acorte parte del articulo y no se muestre completo-->
+          <p class="text-base text-gray-700">{{post.content | slice:0:100}}...</p>
         </div>
         <div class="flex px-6 pt-4 pb-2 space-x-4">
           <a [routerLink]="['/entrada', post.id]" class="px-4 py-1 text-white bg-blue-500 rounded hover:bg-blue-700">Leer</a>
