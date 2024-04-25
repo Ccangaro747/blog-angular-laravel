@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Post } from './../../models/post';
 import { PostService } from './../../services/post.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-post-detail',
@@ -16,9 +17,11 @@ export class PostDetailComponent implements OnInit {
     private _postService: PostService,
     private _route: ActivatedRoute,
     private _router: Router,
+    private sanitizer: DomSanitizer
   ) {
     // Inicializa la propiedad post en el constructor
     this.post = new Post(0, 0, 0, '', '', '', null);
+    
   }
 
   ngOnInit(): void {
