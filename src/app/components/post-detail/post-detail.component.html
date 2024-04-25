@@ -1,10 +1,8 @@
-<!-- post-detail.component.html -->
-
 <div class="container mx-auto mt-3" *ngIf="post">
   <div class="max-w-3xl mx-auto">
     <h1 class="text-3xl font-bold">{{post.title}}</h1>
     <hr class="my-4">
-    <p class="mb-2" [innerHTML]="post.category?.name + ' - ' + post.user?.name + ' ' + post.user?.surname"></p>
-    <p class="post-content" [style.white-space]="'pre-line'" [innerHTML]="post.content"></p>
+    <p class="mb-2">{{post.category?.name}} - {{post.user?.name}} {{post.user?.surname}}</p>
+    <div class="post-content" [style.white-space]="'pre-line'" [innerHTML]="sanitizedContent"></div> <!-- Aquí se usa sanitizedContent -->
   </div>
 </div>
