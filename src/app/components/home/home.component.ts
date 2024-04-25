@@ -46,4 +46,18 @@ export class HomeComponent {
       }
     );
   }
+
+  deletePost(post: Post){
+    if (confirm('¿Estás seguro de que quieres eliminar el post "' + post.title + '"?')) {
+      this._postService.delete(this.token, post.id).subscribe(
+        response => {
+          this.getPosts();
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }
+  }
+
 }

@@ -72,6 +72,14 @@ export class PostService {
     });
   }
 
+  delete (token: string, id: number): Observable<any> {
+    let headers = new HttpHeaders()
+      .set('Content-Type', 'application/x-www-form-urlencoded')
+      .set('Authorization', token);
+
+    return this._http.delete(this.url + 'post/' + id, { headers: headers });
+  }
+
   //Codigo comentado:
   /*// Método para obtener todas las entradas de la base de datos. Devuelve un Observable.
 
