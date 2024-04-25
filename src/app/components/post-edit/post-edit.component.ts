@@ -87,12 +87,12 @@ export class PostEditComponent {
 
   onSubmit(form: NgForm) {
     if (this.token !== null)
-    this._postService.create(this.token, this.post).subscribe(
+    this._postService.update(this.token, this.post, this.post.id).subscribe(
       (response: any) => {
         if(response.status == 'success'){
-          this.post = response.post;
+          //this.post = response.post;
           this.status = 'success';
-          this._router.navigate(['/inicio']);
+          this._router.navigate(['/entrada', this.post.id]);
         }else{
           this.status = 'error';
         }
