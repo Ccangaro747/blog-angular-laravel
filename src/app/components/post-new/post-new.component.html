@@ -1,21 +1,42 @@
 <div class="p-4 bg-white">
   <div class="container flex flex-col items-center justify-center mx-auto">
-    <h1 class="mb-4 text-3xl font-bold text-gray-800">{{titleOne}}</h1>
-    <p class="mb-4 text-gray-800">
+    <h1 class="mb-4 text-3xl font-bold text-gray-800">{{ titleOne }}</h1>
+    <p *ngIf="!is_edit" class="mb-4 text-gray-800">
       Añade un nuevo articulo al Blog
     </p>
+    <p *ngIf="is_edit && post" class="mb-4 text-gray-800">
+      Modifica el post {{ post.title }}
+    </p>
 
-    <div class="p-4 mb-4 text-white bg-green-500 rounded-md" *ngIf="status === 'success'">
+    <div
+      class="p-4 mb-4 text-white bg-green-500 rounded-md"
+      *ngIf="status === 'success'"
+    >
       Los datos se han guardado correctamente
     </div>
-    <div class="p-4 mb-4 text-white bg-red-500 rounded-md" *ngIf="status === 'error'">
+    <div
+      class="p-4 mb-4 text-white bg-red-500 rounded-md"
+      *ngIf="status === 'error'"
+    >
       Los datos no se han guardado correctamente
     </div>
 
-    <form class="w-full max-w-md" #postNew="ngForm" (ngSubmit)="onSubmit(postNew)">
+    <form
+      class="w-full max-w-md"
+      #postNew="ngForm"
+      (ngSubmit)="onSubmit(postNew)"
+    >
       <div class="mb-4">
         <label for="titleId" class="block text-gray-800">Titulo:</label>
-        <input type="text" id="titleId" name="title" #title="ngModel" [(ngModel)]="post.title" class="block w-full mt-1 bg-gray-100 rounded-md form-input" required/>
+        <input
+          type="text"
+          id="titleId"
+          name="title"
+          #title="ngModel"
+          [(ngModel)]="post.title"
+          class="block w-full mt-1 bg-gray-100 rounded-md form-input"
+          required
+        />
         <small *ngIf="!title.valid && title.touched" class="text-red-500">
           El titulo no es valido
         </small>
@@ -23,7 +44,14 @@
 
       <div class="mb-4">
         <label for="contentId" class="block text-gray-800">Contenido:</label>
-        <textarea id="contentId" name="content" #content="ngModel" [(ngModel)]="post.content" class="block w-full mt-1 bg-gray-100 rounded-md form-textarea" required></textarea>
+        <textarea
+          id="contentId"
+          name="content"
+          #content="ngModel"
+          [(ngModel)]="post.content"
+          class="block w-full mt-1 bg-gray-100 rounded-md form-textarea"
+          required
+        ></textarea>
         <small *ngIf="!content.valid && content.touched" class="text-red-500">
           El contenido no es valido
         </small>
@@ -31,9 +59,18 @@
 
       <div class="mb-4">
         <label for="category" class="block text-gray-800">Categoría:</label>
-        <select id="category" name="category" #category="ngModel" [(ngModel)]="post.category_id" class="block w-full mt-1 bg-gray-100 rounded-md form-select" required>
+        <select
+          id="category"
+          name="category"
+          #category="ngModel"
+          [(ngModel)]="post.category_id"
+          class="block w-full mt-1 bg-gray-100 rounded-md form-select"
+          required
+        >
           <option value="0">Selecciona una categoría</option>
-          <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+          <option *ngFor="let category of categories" [value]="category.id">
+            {{ category.name }}
+          </option>
         </select>
         <small *ngIf="!category.valid && category.touched" class="text-red-500">
           La categoría no es valida
@@ -43,23 +80,31 @@
       <div class="form-group">
         <label for="image">Imagen</label>
 
-        <div *ngIf="identity && identity.image">
-        </div>
+        <div *ngIf="identity && identity.image"></div>
 
-        <input type="file" id="image" name="file0" class="file-input"
-        (change)="onImageSelected($event)" #fileUpload>
+        <input
+          type="file"
+          id="image"
+          name="file0"
+          class="file-input"
+          (change)="onImageSelected($event)"
+          #fileUpload
+        />
 
         <div class="file-upload">
-          {{fileName || ""}}
-          <button (click)="fileUpload.click()">
-          </button>
+          {{ fileName || "" }}
+          <button (click)="fileUpload.click()"></button>
         </div>
       </div>
 
       <div class="flex justify-center">
-        <input type="submit" value="Guardar cambios" [disabled]="postNew.invalid" class="justify-center px-4 py-2 font-bold text-white bg-blue-500 rounded cursor-pointer hover:bg-blue-700">
+        <input
+          type="submit"
+          value="Guardar cambios"
+          [disabled]="postNew.invalid"
+          class="justify-center px-4 py-2 font-bold text-white bg-blue-500 rounded cursor-pointer hover:bg-blue-700"
+        />
       </div>
-
     </form>
   </div>
 </div>

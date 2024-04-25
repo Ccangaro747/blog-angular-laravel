@@ -26,6 +26,7 @@ export class PostNewComponent {
   public post: Post;
   public categories: any[];
   public status;
+  public is_edit: boolean;
 
 
   constructor(
@@ -40,6 +41,7 @@ export class PostNewComponent {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
     this.status = '';
+    this.is_edit = false; // o true, dependiendo de tu lógica
 
     // Inicializa post en el constructor
     this.post = new Post(1, this.identity.sub, 1, '', '', '', '');
