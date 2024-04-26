@@ -19,7 +19,7 @@
         <!-- Mostrar solo si el usuario está logeado -->
         <a [routerLink]="['/inicio']" class="text-white">Inicio</a>
         <div *ngFor="let category of categories">
-          <a href="#" class="text-white">{{category.name}}</a>
+          <a [routerLink]="['/categoria', category.id]" class="text-white">{{category.name}}</a>
         </div>
       </ng-container>
     </div>

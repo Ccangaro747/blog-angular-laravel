@@ -46,4 +46,18 @@ export class CategoryService{
 
     return this._http.get(this.url+'category', {headers: headers});
   }
+  // Crear un método para el servicio que se encargue de obtener una categoría en específico
+  getCategoryById(id: number): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this._http.get(this.url+'category/'+id, {headers: headers});
+  }
+  // Crear un método para el servicio que se encargue de obtener los posts de una categoría en específico
+  getPosts(id: number): Observable<any>{
+    let headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+
+    return this._http.get(this.url+'post/category/'+id, {headers: headers});
+  }
+
+
 }
