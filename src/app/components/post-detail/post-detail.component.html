@@ -3,6 +3,6 @@
     <h1 class="text-3xl font-bold">{{post.title}}</h1>
     <hr class="my-4">
     <p class="mb-2">{{post.category?.name}} - {{post.user?.name}} {{post.user?.surname}}</p>
-    <div class="post-content" [style.white-space]="'pre-line'" [innerHTML]="sanitizedContent"></div> <!-- Aquí se usa sanitizedContent -->
+    <div class="post-content" [style.white-space]="'pre-wrap'" [innerHTML]="sanitizedContent"></div> <!--Le puse pre wrap, respeta los espacios en blanco y las sangrías cuando se cargue HTML -->
   </div>
 </div>
